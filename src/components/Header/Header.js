@@ -20,30 +20,12 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">
-            <span>Sale</span>
-            <strong>Sale</strong>
-          </NavLink>
-          <NavLink href="/new">
-            <span>New&nbsp;Releases</span>
-            <strong>New&nbsp;Releases</strong>
-          </NavLink>
-          <NavLink href="/men">
-            <span>Men</span>
-            <strong>Men</strong>
-          </NavLink>
-          <NavLink href="/women">
-            <span>Women</span>
-            <strong>Women</strong>
-          </NavLink>
-          <NavLink href="/kids">
-            <span>Kids</span>
-            <strong>Kids</strong>
-          </NavLink>
-          <NavLink href="/collections">
-            <span>Collections</span>
-            <strong>Collections</strong>
-          </NavLink>
+          <NavLink href="/sale"><span>Sale</span></NavLink>
+          <NavLink href="/new"><span>New&nbsp;Releases</span></NavLink>
+          <NavLink href="/men"><span>Men</span></NavLink>
+          <NavLink href="/women"><span>Women</span></NavLink>
+          <NavLink href="/kids"><span>Kids</span></NavLink>
+          <NavLink href="/collections"><span>Collections</span></NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -97,6 +79,8 @@ const DesktopNav = styled.nav`
   @media ${QUERIES.tabletAndSmaller} {
     display: none;
   }
+
+  position: relative;
 `;
 
 const MobileActions = styled.div`
@@ -139,45 +123,44 @@ const NavLink = styled.a`
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
   overflow: hidden;
-  height: 27px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
 
   &:first-of-type {
     color: var(--color-secondary);
   }
 
-  & span, & strong {
-    display: block;
+  & span::before, & span::after {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 2px;
+    background: gray;
+    content: '';
+    opacity: 0;
+
+    transition: transform 200ms, opacity 200ms;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform 600ms;
-
-/*    &:hover span, &:hover strong  {
-      transform: translateY(-27px);
-      transition: transform 100ms;
-    }*/
+  & span::after {
+    top: revert;
+    bottom: 0px;
+    left: 0px;
   }
 
-  @keyframes reveal {
-    from {
-      transform: translateY(0px);
-    }
-    to {
-      transform: translateY(-27px);
-    }
+  &:hover  {
+      color: gray;
   }
 
+  &:hover span::before {
+    transform: translateY(6px);
+    opacity: 1;
+  }
 
-  @media (prefers-reduced-motion: no-preference) {
-    & span, & strong  {
-      transform: translateY(0px);
-      transition: transform 1s;
-    }
-
-    &:hover span, &:hover strong  {
-      transform: translateY(-27px);
-      transition: transform 1s;
-    }
+  &:hover span::after {
+    transform: translateY(-6px);
+    opacity: 1;
   }
 `;
 
