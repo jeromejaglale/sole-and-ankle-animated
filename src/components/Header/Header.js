@@ -153,14 +153,16 @@ const NavLink = styled.a`
       color: gray;
   }
 
-  &:hover span::before {
-    transform: translateY(6px);
-    opacity: 1;
-  }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover span::before {
+      transform: translateY(6px);
+      opacity: 1;
+    }
 
-  &:hover span::after {
-    transform: translateY(-6px);
-    opacity: 1;
+    &:hover span::after {
+      transform: translateY(-6px);
+      opacity: 1;
+    }
   }
 `;
 
