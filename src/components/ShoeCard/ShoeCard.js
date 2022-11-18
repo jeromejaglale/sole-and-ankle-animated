@@ -98,6 +98,7 @@ const Image = styled.img`
     transform: scale(1.1);
     transition: transform 100ms;
   }
+
 }
 `;
 
@@ -138,6 +139,16 @@ const Flag = styled.div`
   font-weight: ${WEIGHTS.bold};
   color: var(--color-white);
   border-radius: 2px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 600ms;
+
+    ${ImageWrapper}:hover & {
+      transform: translate(-4px, -12px) rotate(10deg);
+      transition: transform 100ms;
+      filter: drop-shadow(1px 1px 4px gray);
+    }
+  }
 `;
 
 const SaleFlag = styled(Flag)`
