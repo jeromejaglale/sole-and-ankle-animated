@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <span>Sale</span>
+            <strong>Sale</strong>
+          </NavLink>
+          <NavLink href="/new">
+            <span>New&nbsp;Releases</span>
+            <strong>New&nbsp;Releases</strong>
+          </NavLink>
+          <NavLink href="/men">
+            <span>Men</span>
+            <strong>Men</strong>
+          </NavLink>
+          <NavLink href="/women">
+            <span>Women</span>
+            <strong>Women</strong>
+          </NavLink>
+          <NavLink href="/kids">
+            <span>Kids</span>
+            <strong>Kids</strong>
+          </NavLink>
+          <NavLink href="/collections">
+            <span>Collections</span>
+            <strong>Collections</strong>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -120,9 +138,46 @@ const NavLink = styled.a`
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  overflow: hidden;
+  height: 27px;
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+
+  & span, & strong {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 600ms;
+
+/*    &:hover span, &:hover strong  {
+      transform: translateY(-27px);
+      transition: transform 100ms;
+    }*/
+  }
+
+  @keyframes reveal {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-27px);
+    }
+  }
+
+
+  @media (prefers-reduced-motion: no-preference) {
+    & span, & strong  {
+      transform: translateY(0px);
+      transition: transform 1s;
+    }
+
+    &:hover span, &:hover strong  {
+      transform: translateY(-27px);
+      transition: transform 1s;
+    }
   }
 `;
 
